@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Walter Gnerre | Engineering Portfolio</title>
+<meta name="description" content="Walter Gnerre, mechanical engineering student at FIU. Spacecraft propulsion, satellite systems, and hands-on hardware.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23161A17'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%23F7F8F5' text-anchor='middle'%3EWG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --film:#E3E6E1;
+  --sheet:#F7F8F5;
+  --tint:#ECEFEA;
+  --ink:#161A17;
+  --graphite:#596059;
+  --rule:#B6BCB4;
+  --hair:#D9DDD6;
+  --redline:#BF3326;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--film);color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--ink)}
+a:focus-visible{outline:2px solid var(--redline);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--sheet);padding:8px 12px;z-index:10}
+.skip:focus{left:8px}
+sub{font-size:.72em}
+
+.label{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--graphite)}
+.val{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;margin-top:3px;overflow-wrap:anywhere}
+
+/* ---------- title block ---------- */
+.titleblock{border:1.5px solid var(--ink);background:var(--sheet);margin:32px 0 10px}
+.tb-name{padding:28px 26px 20px;border-bottom:1.5px solid var(--ink)}
+.tb-name h1{font-family:"Saira Condensed",sans-serif;font-weight:700;font-size:clamp(46px,9vw,92px);line-height:.9;text-transform:uppercase}
+.tb-name .role{font-family:"Saira Condensed",sans-serif;font-weight:500;font-size:clamp(16px,2.4vw,21px);letter-spacing:.05em;text-transform:uppercase;color:var(--graphite);margin-top:10px}
+.tb-name .intro{max-width:66ch;margin-top:16px;font-size:16.5px}
+.tb-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.tb-grid > div{padding:11px 14px 13px;border-right:1px solid var(--rule)}
+.tb-grid > div:last-child{border-right:0}
+.tb-links{display:flex;flex-wrap:wrap;border-top:1px solid var(--rule)}
+.tb-links a{flex:1 1 auto;text-align:center;padding:12px 16px;text-decoration:none;font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-right:1px solid var(--rule)}
+.tb-links a:last-child{border-right:0}
+.tb-links a:hover{background:var(--ink);color:var(--sheet)}
+
+/* ---------- sheet index ---------- */
+.contents{margin:30px 0 8px}
+.contents ol{list-style:none;border-top:1px solid var(--rule);margin-top:8px}
+.contents li{border-bottom:1px solid var(--rule)}
+.contents li.group{border-bottom:0;padding:14px 2px 4px}
+.contents a{display:flex;gap:16px;align-items:baseline;padding:9px 2px;text-decoration:none}
+.contents a:hover .ttl{color:var(--redline)}
+.contents .num{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--graphite);min-width:48px}
+.contents .ttl{font-family:"Saira Condensed",sans-serif;font-weight:600;font-size:20px;text-transform:uppercase;letter-spacing:.02em;flex:1}
+.contents .meta{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--graphite);text-align:right}
+
+/* ---------- sheets ---------- */
+.sheet{border:1.5px solid var(--ink);background:var(--sheet);margin:26px 0;scroll-margin-top:16px}
+.sheet-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;padding:20px 24px 14px;border-bottom:1px solid var(--rule)}
+.sheet-head h2{font-family:"Saira Condensed",sans-serif;font-weight:700;font-size:clamp(26px,4vw,38px);line-height:1.02;text-transform:uppercase}
+.sheet-head .sub{font-family:"Saira Condensed",sans-serif;font-weight:500;font-size:clamp(15px,2vw,18px);letter-spacing:.04em;text-transform:uppercase;color:var(--graphite);margin-top:4px}
+.sheet-no{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--graphite);white-space:nowrap}
+.sheet-body{padding:22px 24px 10px}
+.sheet-body p{margin-bottom:12px;max-width:70ch}
+.sheet-body p.lede{font-size:18px;line-height:1.5}
+
+/* What / How / Result */
+.whr{border-top:1px solid var(--rule);margin:16px 0 22px}
+.whr .row{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:15px 0;border-bottom:1px solid var(--rule)}
+.whr .tag{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--graphite);padding-top:3px}
+.whr .row.result .tag{color:var(--redline)}
+.whr .txt > p:last-child{margin-bottom:0}
+.whr ul{list-style:none;max-width:72ch}
+.whr li{position:relative;padding-left:18px;margin-bottom:8px}
+.whr li:last-child{margin-bottom:0}
+.whr li::before{content:"";position:absolute;left:2px;top:.72em;width:7px;height:1.5px;background:var(--ink)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:14px}
+.metric{background:#fff;padding:12px 14px 13px}
+.metric .n{font-family:"Saira Condensed",sans-serif;font-weight:700;font-size:34px;line-height:1;letter-spacing:.005em}
+.metric .n small{font-size:17px;font-weight:600;margin-left:3px}
+.metric .l{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--graphite);margin-top:7px;line-height:1.4}
+.eq{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:600;border-left:2px solid var(--redline);padding:8px 0 8px 14px;margin:10px 0 4px;background:var(--tint);max-width:520px}
+.eq .to{color:var(--redline)}
+
+/* redline notes */
+.redlines{border-left:2px solid var(--redline);padding:2px 0 2px 14px;margin:4px 0 18px}
+.redlines .label{color:var(--redline)}
+.redlines ul{list-style:none;margin-top:8px}
+.redlines li{font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.7;display:flex;gap:11px;margin-bottom:4px}
+.redlines li::before{content:attr(data-n);color:var(--redline);font-weight:600;flex:none}
+.whr .redlines li{padding-left:0}
+.whr .redlines li::before{position:static;width:auto;height:auto;background:none}
+
+/* figures */
+figure{margin:4px 0 20px}
+figure svg,figure img{display:block;width:100%;height:auto;border:1px solid var(--hair);background:#fff}
+figure a{display:block}
+figcaption{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--graphite);margin-top:7px;line-height:1.55}
+.fig-n{color:var(--redline);font-weight:600}
+.figs{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.figs > *,.builds > *{min-width:0}
+.w-920{max-width:920px}.w-760{max-width:760px}.w-640{max-width:640px}
+.pair-rocket{display:grid;grid-template-columns:.414fr 1fr;gap:16px;max-width:760px;align-items:start}
+.pair-car{display:grid;grid-template-columns:.812fr 1fr;gap:16px;max-width:920px;align-items:start}
+
+/* tables */
+.table-wrap{overflow-x:auto;margin:6px 0 20px;max-width:920px}
+table{width:100%;border-collapse:collapse;font-family:"IBM Plex Mono",monospace;font-size:12.5px;min-width:480px;background:#fff}
+caption{text-align:left;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--graphite);padding:0 0 6px}
+th{text-align:left;font-weight:600;font-size:10.5px;letter-spacing:.09em;color:var(--graphite);padding:8px 10px;border-bottom:1.5px solid var(--ink);background:var(--sheet)}
+td{padding:7px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+tr.hi td{background:var(--tint);font-weight:600}
+td.num,th.num{text-align:right}
+td.ok{color:var(--ink);font-weight:600}
+td:first-child{white-space:nowrap}
+
+/* sheet foot */
+.sheet-foot{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink)}
+.sheet-foot > div{padding:8px 14px 10px;border-right:1px solid var(--rule)}
+.sheet-foot > div:last-child{border-right:0}
+.sheet-foot .val{font-size:12px}
+
+/* other builds */
+.builds{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:14px}
+.build{border:1px solid var(--rule);background:#fff;display:flex;flex-direction:column}
+.build-head{padding:12px 14px 9px;border-bottom:1px solid var(--hair)}
+.build-head h3{font-family:"Saira Condensed",sans-serif;font-weight:600;font-size:20px;text-transform:uppercase;letter-spacing:.03em}
+.build-head .date{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--graphite)}
+.build-body{padding:12px 14px 4px;flex:1}
+.build-body p{font-size:15px;margin-bottom:10px}
+.build-body b{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--graphite);font-weight:600;margin-right:6px}
+.build .tools{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--graphite);padding:8px 14px 10px;border-top:1px solid var(--hair)}
+.build figure{margin:0 0 10px}
+
+/* record */
+.record{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule)}
+.record > div{padding:14px 16px 16px;border-right:1px solid var(--rule)}
+.record > div:last-child{border-right:0}
+.record ul{list-style:none;margin-top:8px}
+.record li{font-size:14.5px;margin-bottom:8px;line-height:1.45}
+.record li span{display:block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--graphite)}
+
+footer{margin:34px 0 56px;border-top:1px solid var(--rule);padding-top:14px}
+footer p{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--graphite)}
+
+/* svg text */
+svg text{font-family:"IBM Plex Mono",monospace;fill:var(--ink)}
+svg .t-lab{font-size:11px;fill:#596059}
+svg .t-val{font-size:13.5px;font-weight:600}
+svg .t-num{font-size:12px}
+svg .t-red{fill:#BF3326}
+
+@media (max-width:820px){
+  .figs,.builds{grid-template-columns:1fr}
+  .record{grid-template-columns:1fr}
+  .record > div{border-right:0;border-bottom:1px solid var(--rule)}
+  .record > div:last-child{border-bottom:0}
+  .whr .row{grid-template-columns:1fr;gap:6px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 14px}
+  .tb-grid,.sheet-foot{grid-template-columns:1fr 1fr}
+  .tb-grid > div:nth-child(2n),.sheet-foot > div:nth-child(2n){border-right:0}
+  .tb-grid > div:nth-child(-n+2),.sheet-foot > div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .sheet-head,.sheet-body{padding-left:16px;padding-right:16px}
+  .contents .meta{display:none}
+  .tb-links a{flex-basis:50%}
+  .tb-links a:nth-child(2){border-right:0}
+  .tb-links a:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .metrics{grid-template-columns:1fr 1fr}
+  .metric .n{font-size:28px}
+  .pair-rocket,.pair-car{grid-template-columns:1fr}
+  .pair-rocket figure:first-child{max-width:200px}
+  .eq{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:#fff}.contents,.tb-links,.skip{display:none}.sheet{break-inside:avoid}}
+</style>
+</head>
+<body>
+<a class="skip" href="#s01">Skip to projects</a>
+<div class="wrap">
+
+<!-- ================= TITLE BLOCK ================= -->
+<header class="titleblock">
+  <div class="tb-name">
+    <h1>Walter Gnerre</h1>
+    <div class="role">Mechanical Engineering &middot; Spacecraft Propulsion &amp; Satellite Systems</div>
+    <p class="intro">I'm a mechanical engineering student at Florida International University. Sheets S-01 to S-04 follow one propulsion technology from the lab bench to a NASA vacuum chamber. S-05 to S-09 are rockets, hardware, and team missions. Each sheet covers what I did, how I did it, and the result.</p>
+  </div>
+  <div class="tb-grid">
+    <div><div class="label">Discipline</div><div class="val">Mechanical Eng.</div></div>
+    <div><div class="label">Degree</div><div class="val">B.S., FIU, Apr 2028</div></div>
+    <div><div class="label">Status</div><div class="val">U.S. Citizen</div></div>
+    <div><div class="label">Location</div><div class="val">Miami, FL</div></div>
+  </div>
+  <nav class="tb-links" aria-label="Contact">
+    <a href="assets/Walter_Gnerre_Resume.pdf">Resume (PDF)</a>
+    <a href="https://www.linkedin.com/in/walter-gnerre">LinkedIn</a>
+    <a href="mailto:wgner001@fiu.edu">wgner001@fiu.edu</a>
+  </nav>
+</header>
+
+<!-- ================= SHEET INDEX ================= -->
+<nav class="contents" aria-label="Sheet index">
+  <div class="label">Sheet index</div>
+  <ol>
+    <li class="group"><span class="label">Solar thermal propulsion: lab to orbit</span></li>
+    <li><a href="#s01"><span class="num">S-01</span><span class="ttl">Carbon-Ceramic Evaporator</span><span class="meta">FIU research</span></a></li>
+    <li><a href="#s02"><span class="num">S-02</span><span class="ttl">3U CubeSat Software Architecture</span><span class="meta">Space Dynamics Lab</span></a></li>
+    <li><a href="#s03"><span class="num">S-03</span><span class="ttl">In-Situ Thrust Measurement</span><span class="meta">Space Dynamics Lab</span></a></li>
+    <li><a href="#s04"><span class="num">S-04</span><span class="ttl">Vacuum LED Solar Simulator</span><span class="meta">FIU / NASA KSC</span></a></li>
+    <li class="group"><span class="label">Rockets, hardware &amp; team missions</span></li>
+    <li><a href="#s05"><span class="num">S-05</span><span class="ttl">NAR Level 1 Rocket: DESTINY</span><span class="meta">Personal</span></a></li>
+    <li><a href="#s06"><span class="num">S-06</span><span class="ttl">Untethered Robot Car</span><span class="meta">Personal</span></a></li>
+    <li><a href="#s07"><span class="num">S-07</span><span class="ttl">IREC Microgravity Payload</span><span class="meta">FIU SEDS</span></a></li>
+    <li><a href="#s08"><span class="num">S-08</span><span class="ttl">E.C.L.I.P.S.E. Dual-Rover Mission</span><span class="meta">NASA L'SPACE</span></a></li>
+    <li><a href="#s09"><span class="num">S-09</span><span class="ttl">Other Builds</span><span class="meta">Personal</span></a></li>
+    <li><a href="#record"><span class="num">REC</span><span class="ttl">Education, Honors &amp; Skills</span><span class="meta"></span></a></li>
+  </ol>
+</nav>
+
+<!-- ================= S-01 EVAPORATOR ================= -->
+<section class="sheet" id="s01" aria-labelledby="s01-t">
+  <div class="sheet-head">
+    <div>
+      <h2 id="s01-t">Carbon-Ceramic Evaporator</h2>
+      <div class="sub">Solar Thermal Evaporative Propulsion (STEP) research</div>
+    </div>
+    <div class="sheet-no">SHEET S-01</div>
+  </div>
+  <div class="sheet-body">
+    <p class="lede">The evaporator is the core of our propulsion system: a carbon-ceramic absorber that turns sunlight into heat and evaporates water as propellant.</p>
+
+    <div class="whr">
+      <div class="row">
+        <div class="tag">What I did</div>
+        <div class="txt"><p>I fabricate and test the evaporators, and I wrote the lab's fabrication procedure.</p></div>
+      </div>
+      <div class="row">
+        <div class="tag">How I did it</div>
+        <div class="txt"><ul>
+          <li>Fabricated more than 20 samples by hand at different concentrations of the carbon-ceramic material. The exact ratios are unpublished.</li>
+          <li>Wrote a step-by-step fabrication procedure so anyone in the group can reproduce a sample.</li>
+          <li>Tested samples with no light and at 1-sun equivalent on the lab's in-house solar simulator, about one hour per run.</li>
+          <li>Logged mass-loss rate, humidity, and simulator irradiance for every run.</li>
+        </ul></div>
+      </div>
+      <div class="row result">
+        <div class="tag">Result</div>
+        <div class="txt">
+          <div class="metrics">
+            <div class="metric"><div class="n">20+</div><div class="l">samples fabricated and tested</div></div>
+            <div class="metric"><div class="n">23×</div><div class="l">rise in evaporation rate, dark → 1 sun</div></div>
+            <div class="metric"><div class="n">~1<small>mN</small></div><div class="l">theoretical thrust at 5 sun</div></div>
+            <div class="metric"><div class="n">~1<small>h</small></div><div class="l">per test run</div></div>
+          </div>
+          <p>The data supported the ~1 mN thrust estimate our CubeSat mission is built around (<a href="#s02">S-02</a>), and I co-authored the group's research poster. Thrust can't be measured directly on the bench, which is why we're taking the system to a NASA Kennedy vacuum chamber in April 2027 (<a href="#s04">S-04</a>).</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="w-920">
+      <a href="assets/evaporator-samples.jpg"><img src="assets/evaporator-samples.jpg" alt="Four carbon-ceramic evaporator samples on labeled foil, each a dark rectangular strip divided into cells" width="1600" height="789" loading="lazy"></a>
+      <figcaption><span class="fig-n">FIG 1.1</span> Four of the samples I fabricated, each at a different concentration.</figcaption>
+    </figure>
+
+    <figure class="w-760">
+      <svg viewBox="0 0 700 280" role="img" aria-labelledby="f12t">
+        <title id="f12t">Mass loss rate rises from 0.016 micrograms per second in the dark to 0.37 under one sun for the open evaporator; the vented prototype stays near 0.013.</title>
+        <rect width="700" height="280" fill="#fff"/>
+        <line x1="90" y1="30" x2="660" y2="30" stroke="#E6E9E4"/><line x1="90" y1="75" x2="660" y2="75" stroke="#E6E9E4"/>
+        <line x1="90" y1="120" x2="660" y2="120" stroke="#E6E9E4"/><line x1="90" y1="165" x2="660" y2="165" stroke="#E6E9E4"/>
+        <line x1="90" y1="210" x2="660" y2="210" stroke="#161A17" stroke-width="1.2"/>
+        <line x1="90" y1="30" x2="90" y2="210" stroke="#161A17" stroke-width="1.2"/>
+        <text x="82" y="214" class="t-num" text-anchor="end">0</text><text x="82" y="169" class="t-num" text-anchor="end">0.1</text>
+        <text x="82" y="124" class="t-num" text-anchor="end">0.2</text><text x="82" y="79" class="t-num" text-anchor="end">0.3</text>
+        <text x="82" y="34" class="t-num" text-anchor="end">0.4</text>
+        <text x="90" y="230" class="t-num" text-anchor="middle">0</text><text x="280" y="230" class="t-num" text-anchor="middle">0.5</text>
+        <text x="470" y="230" class="t-num" text-anchor="middle">1.0</text><text x="660" y="230" class="t-num" text-anchor="middle">1.5</text>
+        <text x="375" y="258" class="t-lab" text-anchor="middle">Input power density (kW/m²)</text>
+        <text x="26" y="120" class="t-lab" text-anchor="middle" transform="rotate(-90 26 120)">Mass loss (µg/s)</text>
+        <line x1="204" y1="151" x2="356" y2="151" stroke="#161A17" stroke-opacity=".35" stroke-width="1.5"/>
+        <line x1="432" y1="43.2" x2="603" y2="43.2" stroke="#161A17" stroke-opacity=".35" stroke-width="1.5"/>
+        <line x1="432" y1="204" x2="603" y2="204" stroke="#BF3326" stroke-opacity=".45" stroke-width="1.5"/>
+        <path d="M90 202.7 L280 151 L517.5 43.2" fill="none" stroke="#161A17" stroke-width="2"/>
+        <circle cx="90" cy="202.7" r="5" fill="#161A17"/><circle cx="280" cy="151" r="5" fill="#161A17"/><circle cx="517.5" cy="43.2" r="5" fill="#161A17"/>
+        <circle cx="517.5" cy="204" r="5" fill="#fff" stroke="#BF3326" stroke-width="2"/>
+        <line x1="112" y1="52" x2="140" y2="52" stroke="#161A17" stroke-width="2"/><circle cx="126" cy="52" r="4" fill="#161A17"/>
+        <text x="150" y="56" class="t-lab">Open evaporator</text>
+        <circle cx="126" cy="74" r="4" fill="#fff" stroke="#BF3326" stroke-width="2"/>
+        <text x="150" y="78" class="t-lab t-red">Vented prototype (diffusion-limited)</text>
+      </svg>
+      <figcaption><span class="fig-n">FIG 1.2</span> Mass loss against input power. Horizontal bars show each case's input range. Data from the group's co-authored research poster.</figcaption>
+    </figure>
+
+    <div class="table-wrap w-760">
+      <table>
+        <caption>Measured performance (group poster data)</caption>
+        <thead><tr><th>CASE</th><th class="num">INPUT (kW/m²)</th><th class="num">MASS LOSS (µg/s)</th><th class="num">SURFACE (K)</th></tr></thead>
+        <tbody>
+          <tr><td>Dark, open</td><td class="num">0</td><td class="num">0.0162</td><td class="num">294.8</td></tr>
+          <tr><td>½ sun, open</td><td class="num">0.3–0.7</td><td class="num">0.1310</td><td class="num">312.8</td></tr>
+          <tr class="hi"><td>1 sun, open</td><td class="num">0.9–1.35</td><td class="num">0.3706</td><td class="num">329.3</td></tr>
+          <tr><td>1 sun, vented</td><td class="num">0.9–1.35</td><td class="num">0.0132</td><td class="num">n/a</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="sheet-foot">
+    <div><div class="label">Organization</div><div class="val">FIU College of Eng.</div></div>
+    <div><div class="label">PIs</div><div class="val">Boymelgreen, Schiffbauer</div></div>
+    <div><div class="label">Funding</div><div class="val">NASA SMD, NSF I-Corps</div></div>
+    <div><div class="label">Period</div><div class="val">Jan 2026 – Present</div></div>
+  </div>
+</section>
+
+<!-- ================= S-02 CUBESAT ARCHITECTURE ================= -->
+<section class="sheet" id="s02" aria-labelledby="s02-t">
+  <div class="sheet-head">
+    <div>
+      <h2 id="s02-t">3U CubeSat Software Architecture</h2>
+      <div class="sub">AFRL University Nanosatellite Program, Space Dynamics Laboratory</div>
+    </div>
+    <div class="sheet-no">SHEET S-02</div>
+  </div>
+  <div class="sheet-body">
+    <p class="lede">Over the summer my team turned STEP into a 3U CubeSat mission concept to test it in low Earth orbit, and defended it at MCR, SRR, and PDR before NASA, AFRL, USSF, and industry reviewers.</p>
+
+    <div class="whr">
+      <div class="row">
+        <div class="tag">What I did</div>
+        <div class="txt"><p>I architected the spacecraft's software interface, wrote all 18 command and data handling (CDH) requirements, and was responsible for the power budget.</p></div>
+      </div>
+      <div class="row">
+        <div class="tag">How I did it</div>
+        <div class="txt"><ul>
+          <li>Mapped every command and telemetry path between the onboard computer and 17 onboard components, grouped into 6 subsystems (FIG 2.1).</li>
+          <li>Wrote each CDH requirement as a testable "shall" statement, traced it to system-level requirements, and assigned a verification method: test, inspection, or analysis.</li>
+          <li>Sized onboard storage from the mission budgets: 3 experiments × 1,327,175 bytes = 3.98 MB held before downlink.</li>
+          <li>Set the CDH subsystem's own limits from the budget revision: no more than 5 W and 40 g (both TBR).</li>
+        </ul></div>
+      </div>
+      <div class="row result">
+        <div class="tag">Result</div>
+        <div class="txt">
+          <div class="metrics">
+            <div class="metric"><div class="n">24</div><div class="l">command &amp; telemetry interfaces defined</div></div>
+            <div class="metric"><div class="n">18</div><div class="l">CDH requirements written and traced</div></div>
+            <div class="metric"><div class="n">5/5</div><div class="l">mission budgets closed at PDR</div></div>
+            <div class="metric"><div class="n">3.77<small>kg</small></div><div class="l">of a 6 kg mass limit</div></div>
+          </div>
+          <p>Every mission budget closed: the UHF link closes at 10 kb/s with 360° 1 dB antennas, and the power budget closes without deployable solar panels.</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="w-920">
+      <a href="assets/cubesat-software-architecture.png"><img src="assets/cubesat-software-architecture.png" alt="Software architecture block diagram: reaction wheels, magnetorquers, magnetometer and IMU feed the ADCS; clock, radio, antenna and ground station connect to the Linux OBC; sun sensors, temperature sensor and actuator for the payload; sun sensor, batteries and solar panels for power; heaters and temperature sensor for thermal. Each arrow is labeled with the command or telemetry it carries." width="1424" height="1382" loading="lazy"></a>
+      <figcaption><span class="fig-n">FIG 2.1</span> The software architecture I built: every arrow is a defined command or telemetry interface, color-coded by subsystem (CDH, ADCS, COMM, TCS, EPS, PAY).</figcaption>
+    </figure>
+
+    <div class="figs">
+      <div class="table-wrap">
+        <table>
+          <caption>Selected CDH requirements</caption>
+          <thead><tr><th>ID</th><th>THE OBC / CDH SHALL…</th><th>VERIFY</th></tr></thead>
+          <tbody>
+            <tr><td>CDH-11</td><td>Keep internal time synchronized to within 50 ppm</td><td>Test</td></tr>
+            <tr><td>CDH-13</td><td>Store state-of-health data for 48 h (TBR) before downlink</td><td>Test, insp.</td></tr>
+            <tr><td>CDH-14</td><td>Store 3.98 MB (TBR) of experiment data before downlink</td><td>Test, insp.</td></tr>
+            <tr><td>CDH-17</td><td>Not exceed 5 W (TBR) of power</td><td>Analysis, test, insp.</td></tr>
+            <tr><td>CDH-18</td><td>Not exceed 40 g (TBR) of mass</td><td>Test</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <caption>Budget closure at PDR</caption>
+          <thead><tr><th>BUDGET</th><th>CLOSES</th><th>NOTE</th></tr></thead>
+          <tbody>
+            <tr><td>Data</td><td class="ok">Yes</td><td>Slightly above standard state of health</td></tr>
+            <tr><td>Link</td><td class="ok">Yes</td><td>UHF at 10 kb/s, 360° 1 dB antennas</td></tr>
+            <tr><td>Power</td><td class="ok">Yes</td><td>No deployables needed</td></tr>
+            <tr><td>Mass</td><td class="ok">Yes</td><td>3.77 of 6 kg</td></tr>
+            <tr><td>Pointing</td><td class="ok">Yes</td><td>Sun-pointing tolerance to be studied</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-foot">
+    <div><div class="label">Organization</div><div class="val">Space Dynamics Lab</div></div>
+    <div><div class="label">Program</div><div class="val">AFRL UNP</div></div>
+    <div><div class="label">Role</div><div class="val">Undergraduate Intern</div></div>
+    <div><div class="label">Period</div><div class="val">May – Jul 2026</div></div>
+  </div>
+</section>
+
+<!-- ================= S-03 THRUST ================= -->
+<section class="sheet" id="s03" aria-labelledby="s03-t">
+  <div class="sheet-head">
+    <div>
+      <h2 id="s03-t">In-Situ Thrust Measurement</h2>
+      <div class="sub">Making about 1 millinewton measurable in orbit</div>
+    </div>
+    <div class="sheet-no">SHEET S-03</div>
+  </div>
+  <div class="sheet-body">
+    <p class="lede">The mission's main goal is to measure the thruster's performance in orbit. After our first review we realized the original plan couldn't do it.</p>
+
+    <div class="whr">
+      <div class="row">
+        <div class="tag">What I did</div>
+        <div class="txt"><p>I worked with my team on a new way to measure thrust in orbit, and I built the 3U CubeSat render we used to explain it to reviewers.</p></div>
+      </div>
+      <div class="row">
+        <div class="tag">How I did it</div>
+        <div class="txt"><ul>
+          <li>The problem: about 1 mN of thrust produces a velocity change buried in orbital perturbation noise, and weighing propellant loss directly isn't practical on a 3U bus.</li>
+          <li>Placed the thruster a known distance <em>d</em> from the spacecraft's center of mass, so thrust creates a torque that rotates the satellite instead of a nearly invisible push.</li>
+          <li>The IMU measures that rotation, and the reaction wheel counters it to hold attitude.</li>
+          <li>With the wheel torque known, thrust comes straight from the moment balance:</li>
+        </ul>
+        <div class="eq">Στ ≈ 0 = τ<sub>RW</sub> − F·d &nbsp;<span class="to">→ F = τ<sub>RW</sub> / d</span></div>
+        </div>
+      </div>
+      <div class="row result">
+        <div class="tag">Result</div>
+        <div class="txt">
+          <div class="metrics">
+            <div class="metric"><div class="n">~1<small>mN</small></div><div class="l">thrust made measurable in orbit</div></div>
+            <div class="metric"><div class="n">0</div><div class="l">added sensors: reuses the ADCS IMU and reaction wheel</div></div>
+            <div class="metric"><div class="n">2</div><div class="l">reviews defended after the change (SRR, PDR)</div></div>
+          </div>
+          <p>The mission's primary objective went from unmeasurable to measurable with hardware already on the spacecraft. Open at PDR: study the sun-pointing tolerance and pin down final thrust measurements. What I took from it: the limit wasn't the hardware, it was what we chose to measure.</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="w-640">
+        <a href="assets/cubesat-thrust-render.jpg"><img src="assets/cubesat-thrust-render.jpg" alt="Render of a 3U CubeSat with solar panels on two faces and a payload unit at one end. An orange marker shows the center of gravity, a blue arrow shows thrust applied off-center, and a curved arrow shows the reaction wheel torque." width="990" height="842" loading="lazy"></a>
+        <figcaption><span class="fig-n">FIG 3.1</span> My render of the 3U CubeSat: thrust applied off the center of gravity, balanced by the reaction wheel torque τ<sub>RW</sub>.</figcaption>
+    </figure>
+    <figure class="w-920">
+        <svg viewBox="40 60 640 170" role="img" aria-labelledby="f32t">
+          <title id="f32t">Side view: nozzle offset a distance d below the center of mass; thrust F creates a torque countered by the reaction wheel.</title>
+          <rect x="40" y="60" width="640" height="170" fill="#fff"/>
+          <rect x="150" y="86" width="330" height="104" fill="#ECEFEA" stroke="#161A17" stroke-width="1.6"/>
+          <line x1="260" y1="86" x2="260" y2="190" stroke="#B6BCB4"/><line x1="370" y1="86" x2="370" y2="190" stroke="#B6BCB4"/>
+          <text x="205" y="80" class="t-lab" text-anchor="middle">1U</text><text x="315" y="80" class="t-lab" text-anchor="middle">1U</text><text x="425" y="80" class="t-lab" text-anchor="middle">1U payload</text>
+          <circle cx="205" cy="138" r="24" fill="#fff" stroke="#161A17" stroke-width="1.2"/><circle cx="205" cy="138" r="7" fill="#161A17"/>
+          <text x="205" y="180" class="t-lab" text-anchor="middle">RW</text>
+          <path d="M176 116 A 38 38 0 0 1 234 112" fill="none" stroke="#BF3326" stroke-width="1.8"/>
+          <polygon points="234,112 225,109 229,120" fill="#BF3326"/>
+          <rect x="294" y="122" width="44" height="32" fill="#fff" stroke="#161A17" stroke-width="1.2"/>
+          <text x="316" y="142" class="t-lab" text-anchor="middle">IMU</text>
+          <circle cx="425" cy="138" r="11" fill="none" stroke="#161A17" stroke-width="1.3"/>
+          <path d="M425 127 A 11 11 0 0 1 436 138 L425 138 Z" fill="#161A17"/><path d="M425 149 A 11 11 0 0 1 414 138 L425 138 Z" fill="#161A17"/>
+          <text x="425" y="120" class="t-lab" text-anchor="middle">CG</text>
+          <line x1="120" y1="138" x2="670" y2="138" stroke="#B6BCB4" stroke-dasharray="5 4"/>
+          <polygon points="470,176 502,168 502,208 470,200" fill="#161A17"/>
+          <line x1="120" y1="188" x2="670" y2="188" stroke="#B6BCB4" stroke-dasharray="5 4"/>
+          <line x1="503" y1="188" x2="640" y2="188" stroke="#BF3326" stroke-width="2.4"/>
+          <polygon points="656,188 638,181 638,195" fill="#BF3326"/>
+          <text x="600" y="178" class="t-val t-red" text-anchor="middle">F</text>
+          <line x1="568" y1="140" x2="568" y2="186" stroke="#161A17"/>
+          <polygon points="568,139 564,149 572,149" fill="#161A17"/><polygon points="568,187 564,177 572,177" fill="#161A17"/>
+          <rect x="558" y="154" width="22" height="18" fill="#fff"/>
+          <text x="569" y="168" class="t-val" text-anchor="middle">d</text>
+          <text x="150" y="214" class="t-lab">line of thrust, offset d from the CG</text>
+        </svg>
+        <figcaption><span class="fig-n">FIG 3.2</span> The same idea in side view: the offset <em>d</em> turns thrust into a torque the IMU can see.</figcaption>
+    </figure>
+  </div>
+  <div class="sheet-foot">
+    <div><div class="label">Organization</div><div class="val">Space Dynamics Lab</div></div>
+    <div><div class="label">Discipline</div><div class="val">GNC / Systems</div></div>
+    <div><div class="label">Status</div><div class="val">Defended at PDR</div></div>
+    <div><div class="label">Period</div><div class="val">Summer 2026</div></div>
+  </div>
+</section>
+
+<!-- ================= S-04 SOLAR SIMULATOR ================= -->
+<section class="sheet" id="s04" aria-labelledby="s04-t">
+  <div class="sheet-head">
+    <div>
+      <h2 id="s04-t">Vacuum LED Solar Simulator</h2>
+      <div class="sub">AM0 illumination for a NASA Kennedy thermal-vacuum test</div>
+    </div>
+    <div class="sheet-no">SHEET S-04</div>
+  </div>
+  <div class="sheet-body">
+    <p class="lede">To measure thrust directly, we're testing STEP inside a vacuum chamber at NASA's Kennedy Space Center in April 2027. I own the design of the solar simulator that will light it the way the Sun does in low Earth orbit.</p>
+
+    <div class="whr">
+      <div class="row">
+        <div class="tag">What I did</div>
+        <div class="txt"><p>I own the design of a vacuum-compatible LED solar simulator targeting 1361 W/m² (AM0) over a 10 × 10 cm target plane.</p></div>
+      </div>
+      <div class="row">
+        <div class="tag">How I did it</div>
+        <div class="txt"><ul>
+          <li>Selected 14 candidate LEDs (365–945 nm) from published solar-simulator designs and digitized their datasheet spectra.</li>
+          <li>Built a Python tool to identify which LED combination most closely matches sunlight in low Earth orbit.</li>
+          <li>Designed for vacuum: with no air there's no convection, so the LEDs' waste heat leaves by conduction from a metal-core board into an aluminum baseplate and out through the chamber mount.</li>
+          <li>Produced the system block diagram and section view: power and signal through 2 chamber feedthroughs, with a photodiode and thermocouples verifying irradiance and temperature during the test.</li>
+        </ul></div>
+      </div>
+      <div class="row result">
+        <div class="tag">Result so far</div>
+        <div class="txt">
+          <div class="metrics">
+            <div class="metric"><div class="n">14</div><div class="l">candidate LEDs, 365–945 nm</div></div>
+            <div class="metric"><div class="n">1361<small>W/m²</small></div><div class="l">AM0 target irradiance</div></div>
+            <div class="metric"><div class="n">2</div><div class="l">chamber feedthroughs (power, signal)</div></div>
+            <div class="metric"><div class="n">1<small>week</small></div><div class="l">NASA KSC chamber, Apr 2027</div></div>
+          </div>
+          <p>Still in design. Next: run the tool to set the bill of materials, finish the CAD model, size the heat path's thermal resistance, and settle on 14 or 17 LEDs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="figs">
+      <figure>
+        <a href="assets/solar-sim-block-diagram.jpg"><img src="assets/solar-sim-block-diagram.jpg" alt="System block diagram: bench DC supply and control laptop outside the chamber; power and signal feedthroughs; inside, LED driver, PTFE-insulated wiring, multi-wavelength LED array on an MCPCB, aluminum baseplate, chamber-mount heat sink, optics, diffuser, 10 by 10 cm target plane, photodiode and thermocouples." width="1318" height="1080" loading="lazy"></a>
+        <figcaption><span class="fig-n">FIG 4.1</span> System block diagram: power in, heat out by conduction, sensor data back through the signal feedthrough.</figcaption>
+      </figure>
+      <figure>
+        <a href="assets/solar-sim-section-view.jpg"><img src="assets/solar-sim-section-view.jpg" alt="Section view inside the vacuum chamber: baseplate on top, LED board facing down, optics and standoffs, diffuser plate, and the 10 by 10 cm target plane with the test article and a photodiode." width="1318" height="894" loading="lazy"></a>
+        <figcaption><span class="fig-n">FIG 4.2</span> Front section view. Heights marked TBD are still open.</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="sheet-foot">
+    <div><div class="label">Organization</div><div class="val">FIU College of Eng.</div></div>
+    <div><div class="label">PIs</div><div class="val">Boymelgreen, Schiffbauer</div></div>
+    <div><div class="label">Role</div><div class="val">Research Assistant</div></div>
+    <div><div class="label">Status</div><div class="val">Preliminary design</div></div>
+  </div>
+</section>
+
+<!-- ================= S-05 L1 ROCKET ================= -->
+<section class="sheet" id="s05" aria-labelledby="s05-t">
+  <div class="sheet-head">
+    <div>
+      <h2 id="s05-t">NAR Level 1 Rocket: DESTINY</h2>
+      <div class="sub">Designed in OpenRocket, built by hand, flown on an H100W</div>
+    </div>
+    <div class="sheet-no">SHEET S-05</div>
+  </div>
+  <div class="sheet-body">
+    <p class="lede">My Level 1 certification rocket: 59.6 inches long, 3.1 inches in diameter, 33.5 ounces on the pad.</p>
+
+    <div class="whr">
+      <div class="row">
+        <div class="tag">What I did</div>
+        <div class="txt"><p>I designed, built, and flew a high-power rocket to earn my National Association of Rocketry Level 1 certification, and redesigned its four wooden fins along the way.</p></div>
+      </div>
+      <div class="row">
+        <div class="tag">How I did it</div>
+        <div class="txt"><ul>
+          <li>Modeled the full rocket in OpenRocket: nose cone, body tube, coupler, bulkhead, a 36 in nylon parachute, and the H100W motor.</li>
+          <li>Redesigned the fin geometry so that landing on a fin tip wouldn't shatter the wood and cost me the certification.</li>
+          <li>Checked the change in simulation: static margin went from 3.24 to 3.18 calibers, slightly less overstable and still far above the usual 1-caliber minimum, and peak acceleration rose by 2 ft/s².</li>
+          <li>Cut the fins by hand with a jigsaw and assembled the airframe.</li>
+        </ul></div>
+      </div>
+      <div class="row result">
+        <div class="tag">Result</div>
+        <div class="txt">
+          <div class="metrics">
+            <div class="metric"><div class="n">L1</div><div class="l">NAR certification earned, Fall 2026</div></div>
+            <div class="metric"><div class="n">2,132<small>ft</small></div><div class="l">apogee (simulated)</div></div>
+            <div class="metric"><div class="n">Mach 0.48</div><div class="l">532 ft/s max velocity (simulated)</div></div>
+            <div class="metric"><div class="n">12.5<small>g</small></div><div class="l">403 ft/s² peak acceleration (simulated)</div></div>
+          </div>
+          <p>Flew on the H100W and was recovered in flyable condition, as certification requires. I didn't fly an altimeter, so the apogee, speed, and acceleration figures come from the OpenRocket simulation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pair-rocket">
+      <figure>
+        <a href="assets/l1-rocket.jpg"><img src="assets/l1-rocket.jpg" alt="DESTINY standing upright: white nose cone, black and white body, four black and white fins with the FIU logo" width="497" height="1500" loading="lazy"></a>
+        <figcaption><span class="fig-n">FIG 5.1</span> DESTINY, finished.</figcaption>
+      </figure>
+      <figure>
+        <a href="assets/l1-fin-cutting.jpg"><img src="assets/l1-fin-cutting.jpg" alt="Walter wearing safety glasses, cutting a taped plywood fin with a jigsaw" width="1120" height="1400" loading="lazy"></a>
+        <figcaption><span class="fig-n">FIG 5.2</span> Cutting a redesigned fin by hand.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="w-920">
+      <a href="assets/l1-openrocket.png"><img src="assets/l1-openrocket.png" alt="OpenRocket model of DESTINY: side view with center of gravity at 38.837 inches and center of pressure at 48.683 inches, stability 3.18 calibers, H100W configuration, apogee 2132 feet" width="1800" height="946" loading="lazy"></a>
+      <figcaption><span class="fig-n">FIG 5.3</span> OpenRocket model with the H100W configuration. CG 38.84 in, CP 48.68 in: (48.68 − 38.84) ÷ 3.1 in = 3.18 calibers.</figcaption>
+    </figure>
+  </div>
+  <div class="sheet-foot">
+    <div><div class="label">Type</div><div class="val">Personal build</div></div>
+    <div><div class="label">Motor</div><div class="val">H100W</div></div>
+    <div><div class="label">Certification</div><div class="val">NAR Level 1</div></div>
+    <div><div class="label">Period</div><div class="val">Fall 2025 – Fall 2026</div></div>
+  </div>
+</section>
+
+<!-- ================= S-06 ROBOT CAR ================= -->
+<section class="sheet" id="s06" aria-labelledby="s06-t">
+  <div class="sheet-head">
+    <div>
+      <h2 id="s06-t">Untethered Robot Car</h2>
+      <div class="sub">Simulated in TinkerCAD, built on an Arduino Nano ESP32</div>
+    </div>
+    <div class="sheet-no">SHEET S-06</div>
+  </div>
+  <div class="sheet-body">
+    <p class="lede">A two-motor robot car I wired and programmed from scratch, and the project that taught me the difference between a simulation and real hardware.</p>
+
+    <div class="whr">
+      <div class="row">
+        <div class="tag">What I did</div>
+        <div class="txt"><p>I built a 2-motor DC robot car that drives a preprogrammed sequence on battery power, with no computer attached.</p></div>
+      </div>
+      <div class="row">
+        <div class="tag">How I did it</div>
+        <div class="txt"><ul>
+          <li>Prototyped the circuit and code in TinkerCAD with an Arduino Uno and a 9 V battery, since the simulator doesn't offer the Nano ESP32.</li>
+          <li>Built the real car on an Arduino Nano ESP32 with an L293D H-bridge driving 2 DC motors through 6 pins: 4 for direction, 2 for enable.</li>
+          <li>Wrote about 120 lines of C++: an 8-step open-loop sequence (forward, backward, left, right, each followed by a stop) that repeats every 11 seconds.</li>
+          <li>The simulation worked, but on the real car a 9 V battery couldn't drive both motors. Its low capacity and high internal resistance can't deliver the current two DC motors draw, so I switched to a 4×AA pack.</li>
+        </ul></div>
+      </div>
+      <div class="row result">
+        <div class="tag">Result</div>
+        <div class="txt">
+          <div class="metrics">
+            <div class="metric"><div class="n">8<small>steps</small></div><div class="l">open-loop sequence, 11 s cycle</div></div>
+            <div class="metric"><div class="n">~120</div><div class="l">lines of C++</div></div>
+            <div class="metric"><div class="n">6</div><div class="l">GPIO pins (4 direction, 2 enable)</div></div>
+            <div class="metric"><div class="n">1<small>month</small></div><div class="l">from simulation to working car</div></div>
+          </div>
+          <p>The car runs its full sequence untethered. The lesson I'll keep: simulation validates logic, not power.</p>
+          <div class="redlines">
+            <div class="label">Next</div>
+            <ul><li data-n="01">Add an ultrasonic distance sensor so the car reacts to obstacles instead of running open-loop.</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <figure class="w-760">
+      <a href="assets/robot-car.jpg"><img src="assets/robot-car.jpg" alt="The finished robot car: clear acrylic chassis, two yellow-hub wheels, a breadboard with the Nano ESP32 and L293D, and a 4×AA battery pack" width="1070" height="838" loading="lazy"></a>
+      <figcaption><span class="fig-n">FIG 6.1</span> The finished car: Nano ESP32 and L293D on the breadboard, 4×AA pack on the right.</figcaption>
+    </figure>
+
+    <div class="pair-car">
+      <figure>
+        <a href="assets/robot-car-tinkercad.jpg"><img src="assets/robot-car-tinkercad.jpg" alt="Laptop showing the TinkerCAD simulation with an Arduino Uno, L293D, two motors and a 9 V battery, with the real breadboard circuit on a towel in front" width="1189" height="1400" loading="lazy"></a>
+        <figcaption><span class="fig-n">FIG 6.2</span> The TinkerCAD simulation (Uno, 9 V) behind the real circuit (Nano ESP32).</figcaption>
+      </figure>
+      <figure>
+        <a href="assets/robot-car-programming.jpg"><img src="assets/robot-car-programming.jpg" alt="The robot car on a table connected by USB to a laptop running the Arduino IDE" width="1030" height="985" loading="lazy"></a>
+        <figcaption><span class="fig-n">FIG 6.3</span> Uploading firmware over USB. After upload, the car runs on battery alone.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="w-760">
+      <svg viewBox="0 0 720 230" role="img" aria-labelledby="f64t">
+        <title id="f64t">A 4×AA pack powers the Nano ESP32 and the motor supply rail; the ESP32 sends four direction and two enable signals to the L293D, which drives two motors.</title>
+        <rect width="720" height="230" fill="#fff"/>
+        <rect x="30" y="90" width="112" height="52" fill="#ECEFEA" stroke="#161A17" stroke-width="1.3"/>
+        <text x="86" y="113" class="t-val" text-anchor="middle">4×AA</text><text x="86" y="130" class="t-lab" text-anchor="middle">6 V nominal</text>
+        <rect x="206" y="78" width="140" height="76" fill="#fff" stroke="#161A17" stroke-width="1.6"/>
+        <text x="276" y="108" class="t-val" text-anchor="middle">Nano ESP32</text><text x="276" y="126" class="t-lab" text-anchor="middle">C++, 8-step loop</text>
+        <rect x="410" y="78" width="140" height="76" fill="#fff" stroke="#161A17" stroke-width="1.6"/>
+        <text x="480" y="108" class="t-val" text-anchor="middle">L293D</text><text x="480" y="126" class="t-lab" text-anchor="middle">H-bridge driver</text>
+        <circle cx="640" cy="66" r="28" fill="#fff" stroke="#161A17" stroke-width="1.4"/><text x="640" y="70" class="t-val" text-anchor="middle">M1</text>
+        <circle cx="640" cy="166" r="28" fill="#fff" stroke="#161A17" stroke-width="1.4"/><text x="640" y="170" class="t-val" text-anchor="middle">M2</text>
+        <line x1="142" y1="116" x2="204" y2="116" stroke="#161A17" stroke-width="1.2"/><polygon points="204,116 196,112 196,120" fill="#161A17"/>
+        <path d="M86 142 L86 204 L480 204 L480 156" fill="none" stroke="#161A17" stroke-width="1.2"/><polygon points="480,156 476,164 484,164" fill="#161A17"/>
+        <text x="283" y="220" class="t-lab" text-anchor="middle">motor supply rail</text>
+        <line x1="346" y1="102" x2="408" y2="102" stroke="#BF3326" stroke-width="1.5"/><polygon points="408,102 400,98 400,106" fill="#BF3326"/>
+        <text x="377" y="94" class="t-lab t-red" text-anchor="middle">4× DIR</text>
+        <line x1="346" y1="130" x2="408" y2="130" stroke="#BF3326" stroke-width="1.5"/><polygon points="408,130 400,126 400,134" fill="#BF3326"/>
+        <text x="377" y="148" class="t-lab t-red" text-anchor="middle">2× EN</text>
+        <path d="M550 102 L590 102 L590 72 L610 72" fill="none" stroke="#161A17" stroke-width="1.2"/><polygon points="610,72 602,68 602,76" fill="#161A17"/>
+        <path d="M550 130 L590 130 L590 160 L610 160" fill="none" stroke="#161A17" stroke-width="1.2"/><polygon points="610,160 602,156 602,164" fill="#161A17"/>
+      </svg>
+      <figcaption><span class="fig-n">FIG 6.4</span> Control and power: 6 GPIO pins drive the H-bridge; motor current comes from the battery rail, not through the controller.</figcaption>
+    </figure>
+  </div>
+  <div class="sheet-foot">
+    <div><div class="label">Type</div><div class="val">Personal build</div></div>
+    <div><div class="label">Controller</div><div class="val">Arduino Nano ESP32</div></div>
+    <div><div class="label">Tools</div><div class="val">TinkerCAD, Arduino IDE</div></div>
+    <div><div class="label">Period</div><div class="val">Summer 2026</div></div>
+  </div>
+</section>
+
+<!-- ================= S-07 IREC ================= -->
+<section class="sheet" id="s07" aria-labelledby="s07-t">
+  <div class="sheet-head">
+    <div>
+      <h2 id="s07-t">IREC Microgravity Payload</h2>
+      <div class="sub">FIU SEDS, Spaceport America Cup 2027</div>
+    </div>
+    <div class="sheet-no">SHEET S-07</div>
+  </div>
+  <div class="sheet-body">
+    <p class="lede">I lead the payload for FIU's IREC 2027 rocket: a 3U-form-factor experiment on capillary-driven droplet ejection in microgravity.</p>
+
+    <div class="whr">
+      <div class="row">
+        <div class="tag">What I did</div>
+        <div class="txt"><p>I lead 10 students across 2 subteams (Research; Testing &amp; Integration) and 2 FIU faculty labs, and I own the payload architecture.</p></div>
+      </div>
+      <div class="row">
+        <div class="tag">How I did it</div>
+        <div class="txt"><ul>
+          <li>Conceptualized the experiment: compare how passive and self-propelled (Janus particle) colloids eject droplets from capillaries, using a 9-capillary matrix of 3 fluids × 3 replicates.</li>
+          <li>Defined 4 subsystems (structure, avionics, thermal, science), assigned owners, and set mass, power, and data budgets against IREC's payload rules.</li>
+          <li>Assessed 1–5% H₂O₂ against IREC hazard rules: identified ESRA's non-toxic classification, requested official confirmation, and drafted handling, storage, and PPE procedures.</li>
+          <li>After a platinum deposition failed and was traced to copper crucible contamination, began evaluating gold-coated, magnetically actuated particles as an H₂O₂-free alternative.</li>
+        </ul></div>
+      </div>
+      <div class="row result">
+        <div class="tag">Result so far</div>
+        <div class="txt">
+          <div class="metrics">
+            <div class="metric"><div class="n">10</div><div class="l">students led across 2 subteams</div></div>
+            <div class="metric"><div class="n">9</div><div class="l">capillaries: 3 fluids × 3 replicates</div></div>
+            <div class="metric"><div class="n">4</div><div class="l">subsystems with assigned owners</div></div>
+            <div class="metric"><div class="n">≥4.4<small>lb</small></div><div class="l">IREC payload mass requirement</div></div>
+          </div>
+          <p>In fabrication as of October 2026: Janus particles are being made in the lab, and capillary, structure, avionics, and thermal fabrication is starting.</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="w-640">
+      <svg viewBox="0 0 560 250" role="img" aria-labelledby="f71t">
+        <title id="f71t">Test matrix of nine capillaries: three fluids, control, passive and active, each with three replicates.</title>
+        <rect width="560" height="250" fill="#fff"/>
+        <text x="210" y="34" class="t-lab" text-anchor="middle">Rep 1</text><text x="330" y="34" class="t-lab" text-anchor="middle">Rep 2</text><text x="450" y="34" class="t-lab" text-anchor="middle">Rep 3</text>
+        <text x="40" y="80" class="t-val">Control</text><text x="40" y="96" class="t-lab">plain fluid</text>
+        <text x="40" y="145" class="t-val">Passive</text><text x="40" y="161" class="t-lab">colloids</text>
+        <text x="40" y="210" class="t-val t-red">Active</text><text x="40" y="226" class="t-lab">Janus particles</text>
+        <g stroke="#161A17" stroke-width="1.2">
+          <rect x="160" y="72" width="100" height="16" rx="8" fill="#fff"/><rect x="280" y="72" width="100" height="16" rx="8" fill="#fff"/><rect x="400" y="72" width="100" height="16" rx="8" fill="#fff"/>
+          <rect x="160" y="137" width="100" height="16" rx="8" fill="#ECEFEA"/><rect x="280" y="137" width="100" height="16" rx="8" fill="#ECEFEA"/><rect x="400" y="137" width="100" height="16" rx="8" fill="#ECEFEA"/>
+          <rect x="160" y="202" width="100" height="16" rx="8" fill="#F6DDD9" stroke="#BF3326"/><rect x="280" y="202" width="100" height="16" rx="8" fill="#F6DDD9" stroke="#BF3326"/><rect x="400" y="202" width="100" height="16" rx="8" fill="#F6DDD9" stroke="#BF3326"/>
+        </g>
+        <g fill="#161A17"><circle cx="268" cy="80" r="3"/><circle cx="388" cy="80" r="3"/><circle cx="508" cy="80" r="3"/><circle cx="268" cy="145" r="3"/><circle cx="388" cy="145" r="3"/><circle cx="508" cy="145" r="3"/></g>
+        <g fill="#BF3326"><circle cx="268" cy="210" r="3"/><circle cx="388" cy="210" r="3"/><circle cx="508" cy="210" r="3"/></g>
+      </svg>
+      <figcaption><span class="fig-n">FIG 7.1</span> The 9-capillary test matrix: every result is repeated three times.</figcaption>
+    </figure>
+  </div>
+  <div class="sheet-foot">
+    <div><div class="label">Organization</div><div class="val">FIU SEDS</div></div>
+    <div><div class="label">Competition</div><div class="val">IREC 2027</div></div>
+    <div><div class="label">Role</div><div class="val">Payload Lead</div></div>
+    <div><div class="label">Period</div><div class="val">Sep 2026 – Present</div></div>
+  </div>
+</section>
+
+<!-- ================= S-08 ROVER ================= -->
+<section class="sheet" id="s08" aria-labelledby="s08-t">
+  <div class="sheet-head">
+    <div>
+      <h2 id="s08-t">E.C.L.I.P.S.E. Dual-Rover Mission</h2>
+      <div class="sub">NASA L'SPACE Mission Concept Academy</div>
+    </div>
+    <div class="sheet-no">SHEET S-08</div>
+  </div>
+  <div class="sheet-body">
+    <p class="lede">As Lead Systems Engineer I led eight engineers designing E.C.L.I.P.S.E., a two-rover mission to explore a permanently shadowed region (PSR) at the Moon's south pole.</p>
+
+    <div class="whr">
+      <div class="row">
+        <div class="tag">What I did</div>
+        <div class="txt"><p>I led the team and owned the mission requirements, concept of operations (CONOPS), and system architecture.</p></div>
+      </div>
+      <div class="row">
+        <div class="tag">How I did it</div>
+        <div class="txt"><ul>
+          <li>Split the mission across two cooperative rovers. A PSR never sees sunlight and RTGs weren't allowed, so the mission had to run entirely on solar power collected outside the shadow.</li>
+          <li>Rim Station Unit: stays on the illuminated rim (about 41% average illumination), generates and stores solar power, talks to Earth, and relays power and data. It stays mostly stationary, rotating slightly to track the Sun.</li>
+          <li>Explorer Rover: drives into the PSR for in-situ science, tethered to the Rim Station for continuous power and data.</li>
+          <li>When stakeholders cut the mass budget 23% (150 → 115 kg combined), I ran a trade study across subsystems and brought the options back so the team decided together.</li>
+        </ul></div>
+      </div>
+      <div class="row result">
+        <div class="tag">Result</div>
+        <div class="txt">
+          <div class="metrics">
+            <div class="metric"><div class="n">115<small>kg</small></div><div class="l">combined max mass, after a 23% cut</div></div>
+            <div class="metric"><div class="n">41%</div><div class="l">average illumination at the rim</div></div>
+            <div class="metric"><div class="n">2 × 5</div><div class="l">rovers × subsystems each</div></div>
+            <div class="metric"><div class="n">−198<small>°C</small></div><div class="l">landing-site minimum (max −48 °C)</div></div>
+          </div>
+          <p>Landing site at (−85.33°, 347.069°), southwest of Whitaker Crater and northwest of Lharnu Crater, on a 1.09° slope. Exploration zone inside the PSR at (−85.334°, 347.139°), on a 4.3° slope, where temperatures run −170 °C to −48 °C.</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="w-920">
+      <svg viewBox="0 0 720 250" role="img" aria-labelledby="f81t">
+        <title id="f81t">The Rim Station Unit with a vertical solar array sits in sunlight on the crater rim and links to Earth; a tether carries power and data down to the Explorer Rover inside the permanently shadowed region.</title>
+        <rect width="720" height="250" fill="#fff"/>
+        <path d="M330 205 L680 205 L680 236 L330 236 Z" fill="#ECEFEA"/>
+        <path d="M30 170 L250 170 L330 205 L690 205" fill="none" stroke="#161A17" stroke-width="1.6"/>
+        <text x="505" y="226" class="t-lab" text-anchor="middle">Permanently shadowed region (PSR)</text>
+        <g stroke="#BF3326" stroke-width="1.2"><line x1="60" y1="24" x2="86" y2="52"/><line x1="110" y1="24" x2="136" y2="52"/><line x1="160" y1="24" x2="186" y2="52"/></g>
+        <text x="50" y="16" class="t-lab t-red">Sunlight, ~41% average</text>
+        <line x1="270" y1="30" x2="330" y2="203" stroke="#B6BCB4" stroke-dasharray="5 4"/>
+        <text x="282" y="44" class="t-lab">shadow line</text>
+        <!-- rim station -->
+        <rect x="120" y="140" width="90" height="30" fill="#fff" stroke="#161A17" stroke-width="1.4"/>
+        <circle cx="138" cy="172" r="7" fill="#fff" stroke="#161A17" stroke-width="1.2"/><circle cx="192" cy="172" r="7" fill="#fff" stroke="#161A17" stroke-width="1.2"/>
+        <rect x="150" y="78" width="12" height="62" fill="#ECEFEA" stroke="#161A17" stroke-width="1.3"/>
+        <line x1="198" y1="140" x2="198" y2="120" stroke="#161A17" stroke-width="1.2"/>
+        <path d="M188 120 Q 198 108 208 120" fill="none" stroke="#161A17" stroke-width="1.2"/>
+        <line x1="204" y1="112" x2="226" y2="90" stroke="#161A17" stroke-dasharray="3 3"/>
+        <text x="230" y="90" class="t-lab">Earth</text>
+        <text x="156" y="70" class="t-lab" text-anchor="middle">vertical solar array</text>
+        <text x="160" y="196" class="t-val" text-anchor="middle">Rim Station Unit</text>
+        <text x="160" y="212" class="t-lab" text-anchor="middle">power · comms · relay</text>
+        <!-- tether -->
+        <path d="M210 158 Q 310 178 450 186" fill="none" stroke="#BF3326" stroke-width="1.4" stroke-dasharray="5 3"/>
+        <text x="352" y="173" class="t-lab t-red" text-anchor="middle">tether</text>
+        <!-- explorer -->
+        <rect x="450" y="173" width="66" height="26" fill="#fff" stroke="#161A17" stroke-width="1.4"/>
+        <circle cx="466" cy="201" r="6" fill="#fff" stroke="#161A17" stroke-width="1.2"/><circle cx="500" cy="201" r="6" fill="#fff" stroke="#161A17" stroke-width="1.2"/>
+        <text x="483" y="148" class="t-val" text-anchor="middle">Explorer Rover</text>
+        <text x="483" y="164" class="t-lab" text-anchor="middle">in-situ science</text>
+      </svg>
+      <figcaption><span class="fig-n">FIG 8.1</span> Power is generated where the sun is and carried by tether to where the science is.</figcaption>
+    </figure>
+  </div>
+  <div class="sheet-foot">
+    <div><div class="label">Program</div><div class="val">NASA L'SPACE</div></div>
+    <div><div class="label">Deliverables</div><div class="val">Reqs · CONOPS · Arch.</div></div>
+    <div><div class="label">Role</div><div class="val">Lead Systems Eng.</div></div>
+    <div><div class="label">Period</div><div class="val">Jan – May 2026</div></div>
+  </div>
+</section>
+
+<!-- ================= S-09 OTHER BUILDS ================= -->
+<section class="sheet" id="s09" aria-labelledby="s09-t">
+  <div class="sheet-head">
+    <div>
+      <h2 id="s09-t">Other Builds</h2>
+      <div class="sub">Personal projects</div>
+    </div>
+    <div class="sheet-no">SHEET S-09</div>
+  </div>
+  <div class="sheet-body">
+    <div class="builds">
+      <article class="build">
+        <div class="build-head"><h3>Level 2 Composite Airframe</h3><div class="date">Spring 2026</div></div>
+        <div class="build-body">
+          <figure><img src="assets/l2-airframe.jpg" alt="The fiberglass Level 2 airframe" onerror="this.closest('figure').remove()"></figure>
+          <p><b>What</b>Replaced a commercial off-the-shelf airframe with a custom fiberglass/epoxy airframe built in-house.</p>
+          <p><b>How</b>Laid up the fiberglass and epoxy myself over a 3D-printed support structure.</p>
+          <p><b>Result</b>A stiffer airframe, and my first time owning a composite layup and cure from start to finish.</p>
+        </div>
+        <div class="tools">Fiberglass/epoxy · 3D printing</div>
+      </article>
+      <article class="build">
+        <div class="build-head"><h3>Raptor V3 Engine Model</h3><div class="date">Spring 2026</div></div>
+        <div class="build-body">
+          <figure><img src="assets/raptor-v3.jpg" alt="SolidWorks render of the simplified Raptor V3 model" onerror="this.closest('figure').remove()"></figure>
+          <p><b>What</b>A simplified 3D model of SpaceX's Raptor V3 engine.</p>
+          <p><b>How</b>Built in SolidWorks from public information, with the CH₄ inducer shaft rotating on its axis.</p>
+          <p><b>Result</b>Working through the geometry myself taught me how the turbomachinery fits together better than looking at photos of it.</p>
+        </div>
+        <div class="tools">SolidWorks</div>
+      </article>
+    </div>
+  </div>
+  <div class="sheet-foot">
+    <div><div class="label">Type</div><div class="val">Personal builds</div></div>
+    <div><div class="label">Domains</div><div class="val">Composites · CAD</div></div>
+    <div><div class="label">Tools</div><div class="val">SolidWorks</div></div>
+    <div><div class="label">Period</div><div class="val">Spring 2026</div></div>
+  </div>
+</section>
+
+<!-- ================= RECORD ================= -->
+<section class="sheet" id="record" aria-labelledby="rec-t">
+  <div class="sheet-head">
+    <div><h2 id="rec-t">Education, Honors &amp; Skills</h2></div>
+    <div class="sheet-no">RECORD</div>
+  </div>
+  <div class="record">
+    <div>
+      <div class="label">Education</div>
+      <ul><li>B.S. Mechanical Engineering<span>Florida International University, expected Apr 2028</span></li></ul>
+      <div class="label" style="margin-top:14px">Honors</div>
+      <ul>
+        <li>OURS Undergraduate Research Scholar<span>FIU, 2026–27</span></li>
+        <li>Boeing Honorable Mention<span>Boeing Week at FIU, 2026</span></li>
+        <li>Dean's List<span>FIU, Spring 2026</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="label">Certifications</div>
+      <ul>
+        <li>NAR Level 1 High-Power Rocketry<span>Fall 2026</span></li>
+        <li>NASA L'SPACE Mission Concept Academy<span>Spring 2026 · badges: Systems, Requirements, Risk Mgmt, Project Mgmt, Heat Transfer, Siemens NX, Teaming</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="label">Software</div>
+      <ul><li>Python, C++, SolidWorks, Siemens NX, Fusion 360, KiCad, OpenRocket, TinkerCAD, ANSYS, NASA CEA, Revit, AutoCAD, Civil 3D, Arduino IDE, GitHub</li></ul>
+      <div class="label" style="margin-top:14px">Technical</div>
+      <ul><li>Spacecraft systems engineering, requirements and budgets, propulsion testing, solar simulator design, thermal-vacuum test planning, composite fabrication, embedded systems</li></ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Walter Gnerre &nbsp;·&nbsp; <a href="mailto:wgner001@fiu.edu">wgner001@fiu.edu</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/walter-gnerre">linkedin.com/in/walter-gnerre</a> &nbsp;·&nbsp; <a href="assets/Walter_Gnerre_Resume.pdf">Resume (PDF)</a></p>
+</footer>
+
+</div>
+</body>
+</html>
